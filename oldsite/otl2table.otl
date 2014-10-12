@@ -1,0 +1,78 @@
+otl2table
+Summary
+	: Converts an outline to a table using one of the available formats. This 
+	: is useful for putting outline data into spreadsheets and databases.
+Usage
+	; otl2table.py [options] inputfile > outputfile
+	; Options
+	; 	-n              Don't include trailing columns.
+	; 	-t type        Specify field separator type.
+	; 				   Types:
+	; 					  tab - separate fields with tabs (default)
+	; 					  csv - separate fields with ,
+	; 					  qcsv - separate fields with ","
+	; 					  bullets - uses HTML tags <ul> and <li>
+	; 	-v              Print version (RCS) information.
+	; output is on STDOUT
+Examples
+	: This example converts an outline to a "," table. Note that 9 fields are 
+	: supported. They correspond to 9 outline levels.
+	Before otl2table
+		Pets
+		Indoor
+			Cats
+				Sophia
+				Hillary
+			Rats
+				Finley
+				Oliver
+			Dogs
+				Kirby
+		Outdoor
+			Dogs
+				Kirby
+				Hoover
+			Goats
+				Primrose
+				Joey
+	After otl2table -t qcsv pets.otl
+		"Pets","","","","","","","","",""
+		"Indoor","Cats","Sophia","","","","","","",""
+		"Indoor","Cats","Hillary","","","","","","",""
+		"Indoor","Rats","Finley","","","","","","",""
+		"Indoor","Rats","Oliver","","","","","","",""
+		"Indoor","Dogs","Kirby","","","","","","",""
+		"Outdoor","Dogs","Kirby","","","","","","",""
+		"Outdoor","Dogs","Hoover","","","","","","",""
+		"Outdoor","Goats","Primrose","","","","","","",""
+		"Outdoor","Goats","Joey","","","","","","",""
+	After otl2table pets.otl
+		Pets
+		Indoor  Cats    Sophia
+		Indoor  Cats    Hillary
+		Indoor  Rats    Finley
+		Indoor  Rats    Oliver
+		Indoor  Dogs    Kirby
+		Outdoor Dogs    Kirby
+		Outdoor Dogs    Hoover
+		Outdoor Goats   Primrose
+		Outdoor Goats   Joey
+Downloads
+	[http://www.noels-lab.com/files/otl2table.zip Download ZIP]
+	[http://www.noels-lab.com/files/otl2table.tgz Download tgz]
+License
+	: This program is free software; you can redistribute it and/or modify
+	: it under the terms of the GNU General Public License as published by
+	: the Free Software Foundation; either version 2 of the License.
+	:
+	: This program is distributed in the hope that it will be useful,
+	: but WITHOUT ANY WARRANTY; without even the implied warranty of
+	: MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+	: GNU General Public License for more details.
+	:
+	: You should have received a copy of the GNU General Public License
+	: along with this program; if not, write to the Free Software
+	: Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+Credits
+	; Copyright (c) 2006 Noel Henson					Updated: 2006-02-20
+	; noel@noels-lab.com

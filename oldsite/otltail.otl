@@ -1,0 +1,90 @@
+otltail
+Summary
+	: Remove the specified number of parent headings from an outline. 
+	: This is a good way to promote children. When used with otl2table 
+	: it can aid in extracting information from certain types of 
+	: outlines. It can also aid in converting a single outline into 
+	: many outlines. (see otlsplit)
+Usage
+	; Usage: otltail level < file
+	;        Remove the specified number of parent headings.
+	;        This is a way to promote children. It is
+	;        useful for converting a single outline into a
+	;        number of pages for a web site or chapters for
+	;        a book.
+	;        level   - the number of levels to include
+	;        file    - an otl file
+	;        input   - standard in
+	;        output  - standard out
+Example
+	: This is a simple exampe to remove date information from the outline 
+	: below.
+	Before otltail
+		My Projects
+			2006-01-02
+				Client 1
+					Billing
+						programming: 3:00
+			2006-01-03
+				Client 2
+					Billing
+						meeting: 1:00
+			2006-01-04
+				Client 1
+					Billing
+						programming: 3:00
+				Client 2
+					Billing
+						prototype contruction: 3:30
+			2006-01-05
+				Client 2
+					Billing
+						prototype testing: 8:00
+	after otltail -2
+		Client 1
+			Billing
+				programming: 3:00
+		Client 2
+			Billing
+				meeting: 1:00
+		Client 1
+			Billing
+				programming: 3:00
+		Client 2
+			Billing
+				prototype contruction: 3:30
+		Client 2
+			Billing
+				prototype testing: 8:00
+Script
+	; #!/bin/bash
+	; if [ "$#" -lt 1 ] ; then
+	;         echo " Usage: otltail level < file"
+	;         echo "        Remove the specified number of parent headings."
+	;         echo "        This is a way to promote children. It is"
+	;         echo "        useful for converting a single outline into a"
+	;         echo "        number of pages for a web site or chapters for"
+	;         echo "        a book."
+	;         echo "        level   - the number of levels to include"
+	;         echo "        file    - an otl file"
+	;         echo "        input   - standard in"
+	;         echo "        output  - standard out"
+	;         exit 0
+	; fi
+	; sed "/^\(\t\)\{$1\}.*$/! { D }" | sed "s/^\(\t\)\{$1\}//"
+License
+	: This program is free software; you can redistribute it and/or modify
+	: it under the terms of the GNU General Public License as published by
+	: the Free Software Foundation; either version 2 of the License.
+	:
+	: This program is distributed in the hope that it will be useful,
+	: but WITHOUT ANY WARRANTY; without even the implied warranty of
+	: MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+	: GNU General Public License for more details.
+	:
+	: You should have received a copy of the GNU General Public License
+	: along with this program; if not, write to the Free Software
+	: Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+Credits
+	; Copyright (c) 2006 Noel Henson					Updated: 2006-02-19
+	; noel@noels-lab.com

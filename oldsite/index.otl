@@ -1,0 +1,76 @@
+Noel's Lab #Noel's Lab: MCUs, circuits, programming, thinking and gadgetry.#
+_Menu
+	//Home//
+	[blog.html Blog]
+	[reviews.html Reviews]
+	[howtos.html HOWTOs]
+	[software.html Software]
+	[links.html Links]
+	[contact.html Contact]
+News
+	//March 12th, 2012//
+		Journey Val ROCKS!!!
+			: Yep. she really does.
+	//December 10th, 2009//
+		Added Forth Strings Library
+			: I have uploaded my old Forth-79/Forth-83 strings library 
+			: from the late '80s. It has been updated to work with modern 
+			: Forths like GFORTH.
+			:
+			: [+http://www.noels-lab.com/forthstrings.html Forth Strings Library]
+	//January 1st, 2007//
+		EasyBackup Added to Software
+			: I've finally uploaded a useful version of my easybackup.sh 
+			: script. Backing up data is a great thing to do at the 
+			: beginning of a new year.
+			:
+			: [+http://www.noels-lab.com/easybackup.html easybackup.sh]
+			:
+			: Happy New Year!
+			:
+			: Noel
+	//October 15th, 2006//
+		CORDIC Demo Added
+			: I've added a demo CORDIC program to compute basic trig 
+			: functions. It's written in Forth and should be easy to 
+			: understand and port to other languages. The implementation 
+			: is simple and efficient enough to use on small MCUs.
+			: 
+			: [+http://www.noels-lab.com/cordic.html CORDIC Demo]
+			:
+			: Have fun with it!
+			:
+			: Noel
+	//February 20th, 2006//
+		Open-source utilities added
+			: I've put up the open-source software I've created for my own 
+			: use. You can find it in the new [software.html Software] 
+			: section. Most have to do with outlining using 
+			: [http://www.vimoutliner.org Vim Outliner]. Feel free to 
+			: (ab)use them as you see fit (as long as you honor the GPL).
+			:
+			: Noel
+	//October 22nd, 2005//
+		Lane Mountain Logic spins-off from Noel's Lab
+			: Website traffic over the last year has shown two major 
+			: audiences for Noel's Lab. The first is hobbyists, students 
+			: and experimenters. The second group is comprised mainly of 
+			: businesses seeking professional services. 
+			:
+			: If you're in the first group, congratulations. You have 
+			: chosen a fun, interesting and growing field of study. Noel's 
+			: Lab will continue to serve you in these endeavors. In fact 
+			: Noel's Lab is dropping all products and services so it can 
+			: more spend more time working with the 
+			: electronics/embedded/thinking communities.
+			:
+			: If you're in the second group, you'll want to move along to 
+			: [http://www.lmlogic.com Lane Mountain Logic]. There you can 
+			: find circuit design, MCU programming and other engineering 
+			: services.
+			:
+			: Please don't hesitate to let me know what you'd like to see.
+_BottomMenu
+	[index.html Home] :: [blog.html Blog] :: [reviews.html Reviews] :: [howtos.html HOWTOs] :: [software.html Software] :: [links.html Links] :: [contact.html Contact]
+_Copyright
+	; Copyright (c) 2006-2012 Noel Henson					Updated: 2007-01-01

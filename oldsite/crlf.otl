@@ -1,0 +1,117 @@
+crlf
+Summary
+	: A shell script that converts text files among the various 
+	: formats: unix (LF), PC (CRLF) and Mac (CR). Wildcards are 
+	: allowed.
+Usage
+	; Usage: crlf command file [file2] [file3] ...
+	; Convert the line termination sequence of the file as commanded
+	; 
+	; Commands:
+	;   d2m   convert crlf to cr
+	;   d2u   convert crlf to lf
+	;   m2d   convert cr to crlf
+	;   m2u   convert cr to lf
+	;   u2d   convert lf to crlf
+	;   u2m   convert lf to cr
+	;   help   display this message
+	; 
+	;  Wildcards are supported
+	;  Note: file(s) must be writable so crlf makes them so.
+Examples
+	; crlf m2u mactext
+	; crlf d2u test.TXT blah.TXT Larry.TXT
+	; crlf u2d exports/*.txt
+Script
+	; #!/bin/bash
+	; # Copyright 2003, 2004 and 2005 Noel Henson, All rights reserved.
+	; #
+	; # Functions
+	; TEMP=$$.crlf
+	; function help {
+	;   cat << EOF
+	;   Usage: crlf command file [file2] [file3] ...
+	; Convert the line termination sequence of the file as commanded
+	;
+	;   Commands:
+	; 	d2m   convert crlf to cr
+	; 	d2u   convert crlf to lf
+	; 	m2d   convert cr to crlf
+	; 	m2u   convert cr to lf
+	; 	u2d   convert lf to crlf
+	; 	u2m   convert lf to cr
+	; 	help  display this message
+	;
+	; 	Wildcards are supported
+	; 	Note: file(s) must be writable so crlf makes them so.
+	;
+	; EOF
+	; }
+	; function u2d {
+	; 	chmod +w $1
+	; 	mv $1 $1.$$
+	; 	sed -e "s/$/\r/" $1.$$ > $1
+	; 	rm $1.$$
+	; }
+	; function d2u {
+	; 	chmod +w $1
+	; 	mv $1 $1.$$
+	; 	sed -e "s/\r$//" $1.$$ > $1
+	; 	rm $1.$$
+	; }
+	; function m2d {
+	; 	chmod +w $1
+	; 	mv $1 $1.$$
+	; 	tr "\r" "\n" < $1.$$ | sed -e "s/$/\r/" > $1
+	; 	rm $1.$$
+	; }
+	; function d2m {
+	; 	chmod +w $1
+	; 	mv $1 $1.$$
+	; 	tr -d "\n" < $1.$$ > $1
+	; 	rm $1.$$
+	; }
+	; function u2m {
+	; 	chmod +w $1
+	; 	mv $1 $1.$$
+	; 	tr "\n" "\r" < $1.$$ > $1
+	; 	rm $1.$$
+	; }
+	; function m2u {
+	; 	chmod +w $1
+	; 	mv $1 $1.$$
+	; 	tr "\r" "\n" < $1.$$ > $1
+	; 	rm $1.$$
+	; }
+	;
+	; # Aliases
+	; function -h { 
+	;  help 
+	; }
+	; function -help {
+	;  help 
+	; }
+	; function --help { 
+	;  help 
+	; }
+	; if [ "$#" -lt 2 ] ; then help ; exit 0 ; fi
+	;
+	; CMD=$1
+	; shift 1
+	; for file in $* ; do $CMD $file ; done
+License
+	: This program is free software; you can redistribute it and/or modify
+	: it under the terms of the GNU General Public License as published by
+	: the Free Software Foundation; either version 2 of the License.
+	:
+	: This program is distributed in the hope that it will be useful,
+	: but WITHOUT ANY WARRANTY; without even the implied warranty of
+	: MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+	: GNU General Public License for more details.
+	:
+	: You should have received a copy of the GNU General Public License
+	: along with this program; if not, write to the Free Software
+	: Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+Credits
+	; Copyright (c) 2006 Noel Henson					Updated: 2006-02-23
+	; noel@noels-lab.com

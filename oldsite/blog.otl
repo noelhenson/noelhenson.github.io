@@ -1,0 +1,60 @@
+Noel's Lab #Noel's Lab : Blog#
+_Menu
+	[index.html Home]
+	//Blog//
+	[reviews.html Reviews]
+	[howtos.html HOWTOs]
+	[software.html Software]
+	[links.html Links]
+	[contact.html Contact]
+Blog
+	2006-10-15 - Simple Remote Control
+		: [http://www.infraredremote.com Infrared Remote Solutions, Inc.] 
+		: has a cool little relay board the makes it easy to add remote 
+		: control to just about anything that uses switches. It runs on 
+		: 12VDC so it can be run from a wall wart or from a car's or RV's 
+		: power. I'm having a great time with mine. You can get yours 
+		: here: [http://www.infraredremote.com/4relay.htm 4-Relay].
+		:
+		: -- Noel
+	2005-11-05 - Troubleshooting Myth
+		: Troubleshooting is a rare, innate ability that cannot be taught 
+		: nor learned. Right? //Wrong!!!// Here is an excellent page on a real, 
+		: teachable and learnable, troubleshooting method that really 
+		: works. I have used these and similar techniques for decades.
+		:
+		: If you are a technician, engineer or regularly deal with system 
+		: failures, you should definitely check this out.
+		: 	
+		: [http://www.troubleshooters.com/tuni.htm The Universal Troubleshooting Process]
+		:
+		: -- Noel
+	2005-10-20 - Vim Outliner rocks!
+		: Yes, I know I work on the Vim Outliner project, but that doesn't 
+		: take away from VO's usefulness. As a matter of fact, this entire 
+		: web site was created with 
+		: [http://www.vimoutliner.org Vim Outliner]. This web site is 
+		: a single text outline file that is converted into a multi-page 
+		: web site with some simple-to-use tools.
+		:
+		: Yes I also know I created these simple-to-use tools, but that 
+		: doesn't mean they're not cool. One tool, otl2html, converts 
+		: an outline into an html page. It supports headings, text, 
+		: preformatted text, tables with headings and some simple 
+		: beautification. You can get this tool from the VO web site: 
+		: [http://www.vimoutliner.org www.vimoutliner.org].
+		:
+		: The other tool, which is not yet available to the public, is 
+		: otlsplit. It splits a large outline into several smaller 
+		: outlines. I use this tool to split my large website.otl file 
+		: into several otl files that will, in turn, be converted to web 
+		: pages. Look for this utility to appear soon on the VO website. 
+		: Or if you can't wait, you can ask for a copy in the VO mailing 
+		: list. You can join the list from the '//Participating//' link on 
+		: the VO web site.
+		:
+		: -- Noel
+_BottomMenu
+	[index.html Home] :: [blog.html Blog] :: [reviews.html Reviews] :: [howtos.html HOWTOs] :: [software.html Software] :: [links.html Links] :: [contact.html Contact]
+_Copyright
+	; Copyright (c) 2005 Noel Henson					Updated: 2005-11-05

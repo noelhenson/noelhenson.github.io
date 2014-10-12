@@ -1,0 +1,150 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html><head><title>otltail</title></head>
+<!--  $Revision: 1.52 $ -->
+<!--  $Date: 2008/10/11 22:04:09 $ -->
+<!--  $Author: noel $ -->
+<link href="webpage.css" rel="stylesheet" type="text/css">
+<body>
+<div class="DocTitle">
+<h1>otltail</h1>
+</div>
+<div class="MainPage">
+<div class="Summary">
+<ol>
+<li  class="L1" >Summary <ol>
+<p  class="P2" >Remove the specified number of parent headings from an outline.
+This is a good way to promote children. When used with otl2table
+it can aid in extracting information from certain types of
+outlines. It can also aid in converting a single outline into
+many outlines. (see otlsplit) </p>
+</ol>
+</ol>
+</div>
+<div class="Usage">
+<ol>
+<li  class="L1" >Usage <ol>
+<pre  class="PRE2" > Usage: otltail level < file
+        Remove the specified number of parent headings.
+        This is a way to promote children. It is
+        useful for converting a single outline into a
+        number of pages for a web site or chapters for
+        a book.
+        level   - the number of levels to include
+        file    - an otl file
+        input   - standard in
+        output  - standard out </pre>
+</ol>
+</ol>
+</div>
+<div class="Example">
+<ol>
+<li  class="L1" >Example <ol>
+<p  class="P2" >This is a simple exampe to remove date information from the outline
+below.
+</p>
+<li  class="L2" >Before otltail <ol>
+<li  class="L3" >My Projects <ol>
+<li  class="L4" >2006-01-02 <ol>
+<li  class="L5" >Client 1 <ol>
+<li  class="L6" >Billing <ol>
+<li  class="L7" >programming: 3:00 </ol>
+</ol>
+</ol>
+<li  class="L4" >2006-01-03 <ol>
+<li  class="L5" >Client 2 <ol>
+<li  class="L6" >Billing <ol>
+<li  class="L7" >meeting: 1:00 </ol>
+</ol>
+</ol>
+<li  class="L4" >2006-01-04 <ol>
+<li  class="L5" >Client 1 <ol>
+<li  class="L6" >Billing <ol>
+<li  class="L7" >programming: 3:00 </ol>
+</ol>
+<li  class="L5" >Client 2 <ol>
+<li  class="L6" >Billing <ol>
+<li  class="L7" >prototype contruction: 3:30 </ol>
+</ol>
+</ol>
+<li  class="L4" >2006-01-05 <ol>
+<li  class="L5" >Client 2 <ol>
+<li  class="L6" >Billing <ol>
+<li  class="L7" >prototype testing: 8:00 </ol>
+</ol>
+</ol>
+</ol>
+</ol>
+<li  class="L2" >after otltail -2 <ol>
+<li  class="L3" >Client 1 <ol>
+<li  class="L4" >Billing <ol>
+<li  class="L5" >programming: 3:00 </ol>
+</ol>
+<li  class="L3" >Client 2 <ol>
+<li  class="L4" >Billing <ol>
+<li  class="L5" >meeting: 1:00 </ol>
+</ol>
+<li  class="L3" >Client 1 <ol>
+<li  class="L4" >Billing <ol>
+<li  class="L5" >programming: 3:00 </ol>
+</ol>
+<li  class="L3" >Client 2 <ol>
+<li  class="L4" >Billing <ol>
+<li  class="L5" >prototype contruction: 3:30 </ol>
+</ol>
+<li  class="L3" >Client 2 <ol>
+<li  class="L4" >Billing <ol>
+<li  class="L5" >prototype testing: 8:00 </ol>
+</ol>
+</ol>
+</ol>
+</ol>
+</div>
+<div class="Script">
+<ol>
+<li  class="L1" >Script <ol>
+<pre  class="PRE2" > #!/bin/bash
+ if [ "$#" -lt 1 ] ; then
+         echo " Usage: otltail level < file"
+         echo "        Remove the specified number of parent headings."
+         echo "        This is a way to promote children. It is"
+         echo "        useful for converting a single outline into a"
+         echo "        number of pages for a web site or chapters for"
+         echo "        a book."
+         echo "        level   - the number of levels to include"
+         echo "        file    - an otl file"
+         echo "        input   - standard in"
+         echo "        output  - standard out"
+         exit 0
+ fi
+ sed "/^\(\t\)\{$1\}.*$/! { D }" | sed "s/^\(\t\)\{$1\}//" </pre>
+</ol>
+</ol>
+</div>
+<div class="License">
+<ol>
+<li  class="L1" >License <ol>
+<p  class="P2" >This program is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation; either version 2 of the License.
+</p>
+<p  class="P2" >
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+</p>
+<p  class="P2" >
+You should have received a copy of the GNU General Public License
+along with this program; if not, write to the Free Software
+Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA. </p>
+</ol>
+</ol>
+</div>
+<div class="Credits">
+<ol>
+<li  class="L1" >Credits <ol>
+<pre  class="PRE2" > Copyright &copy; 2006 Noel Henson					Updated: 2006-02-19
+ noel@noels-lab.com </ol>
+</ol>
+</div>
+</body></html>

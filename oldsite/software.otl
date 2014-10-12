@@ -1,0 +1,127 @@
+Noel's Lab #Noel's Lab : Open Source Software Projects#
+_Menu
+	[index.html Home]
+	[blog.html Blog]
+	[reviews.html Reviews]
+	[howtos.html HOWTOs]
+	//Software//
+		[+http://www.vimoutliner.org Vim Outliner]
+		[+otlsplit.html otlsplit]
+		[+otlhead.html otlhead]
+		[+otltail.html otltail]
+		[+otlgrep.html otlgrep]
+		[+otl2table.html otl2table]
+		[+otl2html.html otl2html]
+		[+otl2tags.html otl2tags]
+		[+otl2ooimpress.html otl2ooimpress]
+		[+cidrmerge.html CIDRmerge]
+		[+easybackup.html EasyBackup]
+		[+crlf.html crlf]
+		[+cordic.html CORDIC Demo]
+		[+forthstrings.html Forth Strings]
+	[links.html Links]
+	[contact.html Contact]
+Software
+	: Open souce software projects. My way to give back to the open source 
+	: community. OK, I needed the tools for myself but at least I'm 
+	: sharing.
+	Vim Outliner
+		: Vim Outliner is a Vim plugin that makes it behave as 
+		: a full-featured outliner of the likes of MaxThink, Grandview, 
+		: ThinkTank, and More. It has its own add-ons for checkboxes and 
+		: hoisting and is compatible with Vim spell-checkers like vimspell 
+		: and engspeak. There are several scripts available from other to 
+		: convert text outlines to HTML pages, Docbook files, and Open 
+		: Office Impress files.
+		:
+		: [http://www.vimoutliner.org Vim Outliner details]
+	otlsplit
+		: Splits an outline into separate outlines according to the 
+		: defined split level. Good for creating simple web sites from 
+		: a single outline file. Also good for splitting large outines 
+		: into smaller outlines like separating an outline of a book into 
+		: a bunch of chapter outlines. (see otltail)
+		:
+		: [+otlsplit.html otlsplit details]
+	otlhead
+		: Keeps the specified number of outlines levels and removes the 
+		: rest. Great for generating summaries, especially when using 
+		: checkboxes.
+		:
+		: [+otlhead.html otlhead details]
+	otltail
+		: Remove the specified number of parent headings from an outline. 
+		: This is a good way to promote children. When used with otl2table 
+		: it can aid in extracting information from certain types of 
+		: outlines. It can also aid in converting a single outline into 
+		: many outlines. (see otlsplit)
+		:
+		: [+otltail.html otltail details]
+	otlgrep
+		: This is an outline-aware grep utility. It returns an outline 
+		: that contains only branches that satisfy the regular expression. 
+		: This is useful for quickly extracting context-sensitive 
+		: information from an outline.
+		:
+		: [+otlgrep.html otlgrep details]
+	otl2table
+		: Converts an outline into a table in which each branch, all the 
+		: way down to it's leaves, is on a single line. Levels are columns 
+		: in the table. This is useful for outline-unaware postprocessors 
+		: that create new files or extract informations from an outline.
+		:
+		: [+otl2table.html otl2table details]
+	otl2html
+		: Converts outline files to pretty html file. Inline and external 
+		: CSS is supported. Can be used by Vim Outliner to pretty-print 
+		: outlines. (see Vim Outliner)
+		:
+		: [+otl2html.html otl2html details]
+	otl2tags
+		: Converts outline files into tags-based output files like HTML, 
+		: SGML, XML or whatever. More flexible than otl2html.
+		:
+		: [+otl2tags.html otl2tags details]
+	otl2ooimpress
+		: An example utility to convert and outline file into an Open 
+		: Office Impress file. It works but the formatting is simple and 
+		: hard coded.
+		:
+		: [+otl2ooimpress.html otl2ooimpress details]
+	CIDRmerge
+		: Accepts a list of CIDR address blocks and outputs a more 
+		: efficient, merged list of CIDR blocks. Useful for simplifying 
+		: router configuration when large groups of CIDR blocks are used.
+		:
+		: [+cidrmerge.html CIDRmerge details]
+	EasyBackup
+		: An 'easy' backup shell script. Simple include and exclude files 
+		: that support wildcards are used to determine what and what not 
+		: to backup. Incremental and full backups are implemented as well 
+		: as automatic, incremental burning of incremental backups to DVD 
+		: (or harddisk). One great advantage of this program is that each 
+		: file is individually compressed in an uncompressed hierarchy. 
+		: This makes it easy to use any file browser to find the file your 
+		: looking for.
+		:
+		: [+easybackup.html EasyBackup details]
+	crlf
+		: A shell script that converts text files among the various 
+		: formats: unix (LF), PC (CRLF) and Mac (CR). Wildcards are 
+		: allowed.
+		:
+		: [+crlf.html crlf details]
+	CORDIC Demo
+		: A demonstration of the CORDIC algorithm written in Forth. It 
+		: computes sines and cosines in the range of +/-90 degrees. 
+		:
+		: [+cordic.html CORDIC source]
+	Forth Strings Library
+		: A super simple strings library for Forth. It has been recently 
+		: modified to work with modern Forths like GFORTH.
+		:
+		: [+forthstrings.html Forth Strings]
+_BottomMenu
+	[index.html Home] :: [blog.html Blog] :: [reviews.html Reviews] :: [howtos.html HOWTOs] :: [software.html Software] :: [links.html Links] :: [contact.html Contact]
+_Copyright
+	; Copyright (c) 2006 Noel Henson					Updated: 2006-02-13

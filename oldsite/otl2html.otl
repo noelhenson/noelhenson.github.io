@@ -1,0 +1,102 @@
+otl2html
+Summary
+	: Converts an outline to an HTML page or pages. It is used for 'pretty' 
+	: printing of outlines, creating portable (inline CSS) documents and even 
+	: for creating simple web sites using [otlsplit.html otlsplit].
+Usage
+	; otl2html.py [options] inputfile > outputfile
+	; Options
+	;     -p              Presentation: slide show output for use with HtmlSlides.
+	;     -D              First-level is divisions (&lt;div&gt; &lt;/div&gt;) for making
+	;                     pretty web pages.
+	;     -s sheet        Use the specified style sheet with a link. This is the
+	;                     default.
+	;     -S sheet        Include the specified style sheet in-line the output. For
+	;                     encapsulated style.
+	;     -T              The first line is not the title. Treat it as outline data
+	;     -c              comments (line with [ as the first non-whitespace
+	;                     character. Ending with ] is optional.
+	;     -C copyright    Override the internal copyright notice with the
+	;                     one supplied in the quoted string following this
+	;                     flag. Single or double quotes can be used.
+	;     -v              Print version (RCS) information.
+	;     -H              Show the file syntax help.
+	; output is on STDOUT
+	;   Note: if neither -s or -S are specified, otl2html.py will default to -s. It
+	;       will try to use the css file 'nnnnnn.css' if it exists. If it does not
+	;       exist, it will be created automatically.
+Syntax
+	; Syntax is Vim Outliner's normal syntax. The following are supported:
+	; 
+	;    Text
+	;         :       Body text marker. This text will wrap in the output.
+	;         ;       Preformmated text. This text will will not wrap.
+	; 
+	;    Tables
+	;         ||      Table header line.
+	;         |       Table and table columns. Example:
+	;                         || Name | Age | Animal |
+	;                         | Kirby | 9 | Dog |
+	;                         | Sparky | 1 | Bird |
+	;                         | Sophia | 8 | Cat |
+	;                         This will cause an item to be left-justified.
+	;                                 | whatever  |
+	;                         This will cause an item to be right-justified.
+	;                                 |  whatever |
+	;                         This will cause an item to be centered.
+	;                                 | whatever |
+	; 
+	;    Character Styles
+	;         &#42;&#42;      Bold. &#42;&#42;Bold Text&#42;&#42; yields **Bold Text**
+	;         &#47;&#47;      Italic. &#47;&#47;Italic Text&#47;&#47; yields //Italic Text//
+	;         &#43;&#43;&#43;     Highlight. &#43;&#43;&#43;Highlight Text&#43;&#43;&#43; yields +++Highlight Text+++
+	;         &#45;&#45;&#45;     Strikeout. &#45;&#45;&#45;Strikeout Text&#45;&#45;&#45; yields <strike>Strikeout Text</strike>
+	;         Insane  &#45;&#45;&#45;&#43;&#43;&#43;&#47;&#47;&#42;&#42;Wow! This is insane!&#42;&#42;&#47;&#47;&#43;&#43;&#43;&#45;&#45;&#45; yields <strike>+++//**Wow! This is insane!**//+++</strike>
+	;                 Just remember to keep it all on one line.
+	;    Horizontal Rule
+	;         ----------------------------------------  (40 dashes).
+	;    Copyright
+	;         &#40;c) or &#40;C)      Converts to a standard copyright symbol (c).
+	; 
+	;    Including Images (for web pages)
+	;         &#91;imagename]     Examples:
+	;                         &#91;logo.gif] &#91;photo.jpg] &#91;car.png]
+	;                         &#91;http://i.a.cnn.net/cnn/.element/img/1.1/logo/logl.gif]
+	;                         or from a database:
+	;                         &#91;http://www.lab.com/php/image.php?id=4]
+	; 
+	;    Including links (for web pages)
+	;         &#91;link text-or-image]    Examples:
+	;                         &#91;about.html About] &#91;http:&#47;&#47;www.cnn.com CNN]
+	;                         or with an image:
+	;                         &#91;http:&#47;&#47;www.ted.com &#91;http:&#47;&#47;www.ted.com&#47;logo.png]]
+	; 
+	;    Note:
+	;         When using -D, the top-level headings become divisions (&lt;div>)
+	;         and will be created using a class of the heading name. Spaces
+	;         are not allowed. If a top-level heading begins with '_', it
+	;         will not be shown but the division name will be the same as
+	;         without the '_'. Example: _Menu will have a division name of
+	;         Menu and will not be shown.
+Examples
+	: This page and all of the pages of this web site were created with 
+	: otl2html.
+Downloads
+	[http://www.noels-lab.com/files/otl2html.zip Download ZIP]
+	[http://www.noels-lab.com/files/otl2html.tgz Download tgz]
+License
+	: This program is free software; you can redistribute it and/or modify
+	: it under the terms of the GNU General Public License as published by
+	: the Free Software Foundation; either version 2 of the License.
+	:
+	: This program is distributed in the hope that it will be useful,
+	: but WITHOUT ANY WARRANTY; without even the implied warranty of
+	: MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+	: GNU General Public License for more details.
+	:
+	: You should have received a copy of the GNU General Public License
+	: along with this program; if not, write to the Free Software
+	: Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+Credits
+	; Copyright (c) 2006 Noel Henson					Updated: 2006-04-21
+	; noel@noels-lab.com

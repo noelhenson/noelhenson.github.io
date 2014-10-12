@@ -1,0 +1,166 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html><head><title>crlf</title></head>
+<!--  $Revision: 1.52 $ -->
+<!--  $Date: 2008/10/11 22:04:09 $ -->
+<!--  $Author: noel $ -->
+<link href="webpage.css" rel="stylesheet" type="text/css">
+<body>
+<div class="DocTitle">
+<h1>crlf</h1>
+</div>
+<div class="MainPage">
+<div class="Summary">
+<ol>
+<li  class="L1" >Summary <ol>
+<p  class="P2" >A shell script that converts text files among the various
+formats: unix (LF), PC (CRLF) and Mac (CR). Wildcards are
+allowed. </p>
+</ol>
+</ol>
+</div>
+<div class="Usage">
+<ol>
+<li  class="L1" >Usage <ol>
+<pre  class="PRE2" > Usage: crlf command file <img src="file2" alt="file2"> <img src="file3" alt="file3"> ...
+ Convert the line termination sequence of the file as commanded
+</pre>
+<pre  class="PRE2" >
+ Commands:
+   d2m   convert crlf to cr
+   d2u   convert crlf to lf
+   m2d   convert cr to crlf
+   m2u   convert cr to lf
+   u2d   convert lf to crlf
+   u2m   convert lf to cr
+   help   display this message
+</pre>
+<pre  class="PRE2" >
+  Wildcards are supported
+  Note: file(s) must be writable so crlf makes them so. </pre>
+</ol>
+</ol>
+</div>
+<div class="Examples">
+<ol>
+<li  class="L1" >Examples <ol>
+<pre  class="PRE2" > crlf m2u mactext
+ crlf d2u test.TXT blah.TXT Larry.TXT
+ crlf u2d exports/*.txt </pre>
+</ol>
+</ol>
+</div>
+<div class="Script">
+<ol>
+<li  class="L1" >Script <ol>
+<pre  class="PRE2" > #!/bin/bash
+ # Copyright 2003, 2004 and 2005 Noel Henson, All rights reserved.
+ #
+ # Functions
+ TEMP=$$.crlf
+ function help {
+   cat << EOF
+   Usage: crlf command file <img src="file2" alt="file2"> <img src="file3" alt="file3"> ...
+ Convert the line termination sequence of the file as commanded
+</pre>
+<pre  class="PRE2" >
+   Commands:
+ 	d2m   convert crlf to cr
+ 	d2u   convert crlf to lf
+ 	m2d   convert cr to crlf
+ 	m2u   convert cr to lf
+ 	u2d   convert lf to crlf
+ 	u2m   convert lf to cr
+ 	help  display this message
+</pre>
+<pre  class="PRE2" >
+ 	Wildcards are supported
+ 	Note: file(s) must be writable so crlf makes them so.
+</pre>
+<pre  class="PRE2" >
+ EOF
+ }
+ function u2d {
+ 	chmod +w $1
+ 	mv $1 $1.$$
+ 	sed -e "s/$/\r/" $1.$$ > $1
+ 	rm $1.$$
+ }
+ function d2u {
+ 	chmod +w $1
+ 	mv $1 $1.$$
+ 	sed -e "s/\r$//" $1.$$ > $1
+ 	rm $1.$$
+ }
+ function m2d {
+ 	chmod +w $1
+ 	mv $1 $1.$$
+ 	tr "\r" "\n" < $1.$$ | sed -e "s/$/\r/" > $1
+ 	rm $1.$$
+ }
+ function d2m {
+ 	chmod +w $1
+ 	mv $1 $1.$$
+ 	tr -d "\n" < $1.$$ > $1
+ 	rm $1.$$
+ }
+ function u2m {
+ 	chmod +w $1
+ 	mv $1 $1.$$
+ 	tr "\n" "\r" < $1.$$ > $1
+ 	rm $1.$$
+ }
+ function m2u {
+ 	chmod +w $1
+ 	mv $1 $1.$$
+ 	tr "\r" "\n" < $1.$$ > $1
+ 	rm $1.$$
+ }
+</pre>
+<pre  class="PRE2" >
+ # Aliases
+ function -h {
+  help
+ }
+ function -help {
+  help
+ }
+ function --help {
+  help
+ }
+ if [ "$#" -lt 2 ] ; then help ; exit 0 ; fi
+</pre>
+<pre  class="PRE2" >
+ CMD=$1
+ shift 1
+ for file in $* ; do $CMD $file ; done </pre>
+</ol>
+</ol>
+</div>
+<div class="License">
+<ol>
+<li  class="L1" >License <ol>
+<p  class="P2" >This program is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation; either version 2 of the License.
+</p>
+<p  class="P2" >
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+</p>
+<p  class="P2" >
+You should have received a copy of the GNU General Public License
+along with this program; if not, write to the Free Software
+Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA. </p>
+</ol>
+</ol>
+</div>
+<div class="Credits">
+<ol>
+<li  class="L1" >Credits <ol>
+<pre  class="PRE2" > Copyright &copy; 2006 Noel Henson					Updated: 2006-02-23
+ noel@noels-lab.com </ol>
+</ol>
+</div>
+</body></html>

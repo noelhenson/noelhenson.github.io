@@ -1,0 +1,154 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html><head><title>otl2html</title></head>
+<!--  $Revision: 1.52 $ -->
+<!--  $Date: 2008/10/11 22:04:09 $ -->
+<!--  $Author: noel $ -->
+<link href="webpage.css" rel="stylesheet" type="text/css">
+<body>
+<div class="DocTitle">
+<h1>otl2html</h1>
+</div>
+<div class="MainPage">
+<div class="Summary">
+<ol>
+<li  class="L1" >Summary <ol>
+<p  class="P2" >Converts an outline to an HTML page or pages. It is used for 'pretty'
+printing of outlines, creating portable (inline CSS) documents and even
+for creating simple web sites using <a href="otlsplit.html">otlsplit</a>. </p>
+</ol>
+</ol>
+</div>
+<div class="Usage">
+<ol>
+<li  class="L1" >Usage <ol>
+<pre  class="PRE2" > otl2html.py <img src="options" alt="options"> inputfile > outputfile
+ Options
+     -p              Presentation: slide show output for use with HtmlSlides.
+     -D              First-level is divisions (&lt;div&gt; &lt;/div&gt;) for making
+                     pretty web pages.
+     -s sheet        Use the specified style sheet with a link. This is the
+                     default.
+     -S sheet        Include the specified style sheet in-line the output. For
+                     encapsulated style.
+     -T              The first line is not the title. Treat it as outline data
+     -c              comments (line with [ as the first non-whitespace
+                     character. Ending with ] is optional.
+     -C copyright    Override the internal copyright notice with the
+                     one supplied in the quoted string following this
+                     flag. Single or double quotes can be used.
+     -v              Print version (RCS) information.
+     -H              Show the file syntax help.
+ output is on STDOUT
+   Note: if neither -s or -S are specified, otl2html.py will default to -s. It
+       will try to use the css file 'nnnnnn.css' if it exists. If it does not
+       exist, it will be created automatically. </pre>
+</ol>
+</ol>
+</div>
+<div class="Syntax">
+<ol>
+<li  class="L1" >Syntax <ol>
+<pre  class="PRE2" > Syntax is Vim Outliner's normal syntax. The following are supported:
+</pre>
+<pre  class="PRE2" >
+    Text
+         :       Body text marker. This text will wrap in the output.
+         ;       Preformmated text. This text will will not wrap.
+</pre>
+<pre  class="PRE2" >
+    Tables
+         ||      Table header line.
+         |       Table and table columns. Example:
+                         || Name | Age | Animal |
+                         | Kirby | 9 | Dog |
+                         | Sparky | 1 | Bird |
+                         | Sophia | 8 | Cat |
+                         This will cause an item to be left-justified.
+                                 | whatever  |
+                         This will cause an item to be right-justified.
+                                 |  whatever |
+                         This will cause an item to be centered.
+                                 | whatever |
+</pre>
+<pre  class="PRE2" >
+    Character Styles
+         &#42;&#42;      Bold. &#42;&#42;Bold Text&#42;&#42; yields <strong>Bold Text</strong>
+         &#47;&#47;      Italic. &#47;&#47;Italic Text&#47;&#47; yields <i>Italic Text</i>
+         &#43;&#43;&#43;     Highlight. &#43;&#43;&#43;Highlight Text&#43;&#43;&#43; yields <code>Highlight Text</code>
+         &#45;&#45;&#45;     Strikeout. &#45;&#45;&#45;Strikeout Text&#45;&#45;&#45; yields <strike>Strikeout Text</strike>
+         Insane  &#45;&#45;&#45;&#43;&#43;&#43;&#47;&#47;&#42;&#42;Wow! This is insane!&#42;&#42;&#47;&#47;&#43;&#43;&#43;&#45;&#45;&#45; yields <strike><code><i><strong>Wow! This is insane!</strong></i></code></strike>
+                 Just remember to keep it all on one line.
+    Horizontal Rule
+         ----------------------------------------  (40 dashes).
+    Copyright
+         &#40;c) or &#40;C)      Converts to a standard copyright symbol &copy;.
+</pre>
+<pre  class="PRE2" >
+    Including Images (for web pages)
+         &#91;imagename]     Examples:
+                         &#91;logo.gif] &#91;photo.jpg] &#91;car.png]
+                         &#91;http://i.a.cnn.net/cnn/.element/img/1.1/logo/logl.gif]
+                         or from a database:
+                         &#91;http://www.lab.com/php/image.php?id=4]
+</pre>
+<pre  class="PRE2" >
+    Including links (for web pages)
+         &#91;link text-or-image]    Examples:
+                         &#91;about.html About] &#91;http:&#47;&#47;www.cnn.com CNN]
+                         or with an image:
+                         &#91;http:&#47;&#47;www.ted.com &#91;http:&#47;&#47;www.ted.com&#47;logo.png]]
+</pre>
+<pre  class="PRE2" >
+    Note:
+         When using -D, the top-level headings become divisions (&lt;div>)
+         and will be created using a class of the heading name. Spaces
+         are not allowed. If a top-level heading begins with '_', it
+         will not be shown but the division name will be the same as
+         without the '_'. Example: _Menu will have a division name of
+         Menu and will not be shown. </pre>
+</ol>
+</ol>
+</div>
+<div class="Examples">
+<ol>
+<li  class="L1" >Examples <ol>
+<p  class="P2" >This page and all of the pages of this web site were created with
+otl2html. </p>
+</ol>
+</ol>
+</div>
+<div class="Downloads">
+<ol>
+<li  class="L1" >Downloads <ol>
+<li  class="L2" ><a href="http://www.noels-lab.com/files/otl2html.zip">Download ZIP</a>
+<li  class="L2" ><a href="http://www.noels-lab.com/files/otl2html.tgz">Download tgz</a> </ol>
+</ol>
+</div>
+<div class="License">
+<ol>
+<li  class="L1" >License <ol>
+<p  class="P2" >This program is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation; either version 2 of the License.
+</p>
+<p  class="P2" >
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+</p>
+<p  class="P2" >
+You should have received a copy of the GNU General Public License
+along with this program; if not, write to the Free Software
+Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA. </p>
+</ol>
+</ol>
+</div>
+<div class="Credits">
+<ol>
+<li  class="L1" >Credits <ol>
+<pre  class="PRE2" > Copyright &copy; 2006 Noel Henson					Updated: 2006-04-21
+ noel@noels-lab.com </ol>
+</ol>
+</div>
+</body></html>

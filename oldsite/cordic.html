@@ -1,0 +1,224 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html><head><title>CORDIC</title></head>
+<!--  $Revision: 1.52 $ -->
+<!--  $Date: 2008/10/11 22:04:09 $ -->
+<!--  $Author: noel $ -->
+<link href="webpage.css" rel="stylesheet" type="text/css">
+<body>
+<div class="DocTitle">
+<h1>CORDIC</h1>
+</div>
+<div class="MainPage">
+<div class="Summary">
+<ol>
+<li  class="L1" >Summary <ol>
+<p  class="P2" >A Forth demo of the CORDIC algorithm. It computes sines and cosines in
+the range of +/-90 degrees and +/-pi/2. This demo uses 16-bit math.
+Results have this output format:
+</p>
+<pre  class="PRE2" >   --------------------
+   | S | I | Fraction |
+   --------------------
+     15  14  13...0 </pre>
+</ol>
+</ol>
+</div>
+<div class="Examples">
+<ol>
+<li  class="L1" >Examples <ol>
+<pre  class="PRE2" > ok
+ 45 deg sin .frac <i>7070</i> ok     (0.7070)
+ 30 deg sin .frac <i>5000</i> ok     (0.5000) </pre>
+</ol>
+</ol>
+</div>
+<div class="Forth_Source">
+<ol>
+<li  class="L1" >Forth Source <ol>
+<pre  class="PRE2" >
+ \ CORDIC Demo for Forth
+ \ Supports 16-bit sines and cosines for +/-90 degrees
+ \
+ \ Number format
+ \  bit 15: sign
+ \  bit 14: integer
+ \  bits 13-0: fraction
+</pre>
+<pre  class="PRE2" >
+</pre>
+<pre  class="PRE2" >
+ decimal
+</pre>
+<pre  class="PRE2" >
+ create lookup 15 cells allot
+ : l! ( val index -- )
+ 	cell * lookup + ! ;
+</pre>
+<pre  class="PRE2" >
+ : l@ ( index -- val )
+ 	cell * lookup + @ ;
+</pre>
+<pre  class="PRE2" >
+ : init-lookup-rad ( -- )
+ 	$3244 0 l!	$1DAC 1 l!	$FAE 2 l!	$7F5 3 l!
+ 	$3FF 4 l!	$200 5 l!	$100 6 l!	$80 7 l!
+ 	$40 8 l!	$20 9 l!	$10 10 l!	$8 11 l!
+ 	$4 12 l!	$2 13 l!	$1 14 l!
+ 	;
+</pre>
+<pre  class="PRE2" >
+ : init-lookup-deg ( -- )
+ 	$2000 0 l!	$12e4 1 l!	$9fb 2 l!	$511 3 l!
+ 	$28b 4 l!	$146 5 l!	$a3 6 l!	$51 7 l!
+ 	$29 8 l!	$14 9 l!	$a 10 l!	$5 11 l!
+ 	$3 12 l!	$1 13 l!	$1 14 l!
+ 	;
+</pre>
+<pre  class="PRE2" >
+ variable x
+ variable y
+ variable z
+ variable jj
+ variable kk
+ variable dx
+ variable dy
+ variable dz
+</pre>
+<pre  class="PRE2" >
+ $4000 constant one
+</pre>
+<pre  class="PRE2" >
+ : ?? ( -- )
+ 	cr ." x " x ?
+ 	."   " ." y " y ?
+ 	."   " ." z " z ?
+ 	."   " ." dx " dx ?
+ 	."   " ." dy " dy ?
+ 	."   " ." dz " dz ?
+ 	;
+</pre>
+<pre  class="PRE2" >
+ : reciprocal ( -- )
+ 	0 kk !
+ 	one jj !
+ 	15 0 do
+ 		kk @ 1 lshift kk !
+ 		jj @ x @ < 0= if
+ 			1 kk +!
+ 			jj @ x @ - jj !
+ 		then
+ 		jj @ 1 lshift jj !
+ 	loop
+ 	jj @ x @ < 0= if 1 kk +! then
+ 	;
+</pre>
+<pre  class="PRE2" >
+ : circle ( -- )
+ 	15 0 do
+ 		i l@ dz !
+ 		x @ i rshift dx !
+ 		x @ $8000 and if
+ 			dx @ $ffff 14 i - lshift or $ffff and dx !
+ 		then
+ 		y @ i rshift dy !
+ 		y @ $8000 and if
+ 			dy @ $ffff 14 i - lshift or $ffff and dy !
+ 		then
+ 		z @ $8000 and 0= if
+ 			z @ dz @ - $ffff and z !
+ 			x @ dy @ - $ffff and x !
+ 			y @ dx @ + $ffff and y !
+ 		else
+ 			z @ dz @ + $ffff and z !
+ 			x @ dy @ + $ffff and x !
+ 			y @ dx @ - $ffff and y !
+ 		then
+ 	loop
+ 	;
+</pre>
+<pre  class="PRE2" >
+ : init-kk ( -- )
+ 	one x !
+ 	0 y !
+ 	0 z !
+ 	circle
+ 	reciprocal
+ 	;
+</pre>
+<pre  class="PRE2" >
+ : sincos ( angle -- )
+ 	z !
+ 	kk @ x !
+ 	0 y !
+ 	circle
+ 	;
+</pre>
+<pre  class="PRE2" >
+ : sin ( angle -- magnitude )
+ 	sincos y @ ;
+</pre>
+<pre  class="PRE2" >
+ : cos ( angle -- magnitude )
+ 	sincos x @ ;
+</pre>
+<pre  class="PRE2" >
+ : tan ( angle -- tangent )
+	sincos y @ one * x @ / ;
+</pre>
+<pre  class="PRE2" >
+ : deg ( angle -- binangle )
+ 	one 90 */ ;
+</pre>
+<pre  class="PRE2" >
+ : deg10ths ( angle -- binangle )
+ 	one 900 */ ;
+</pre>
+<pre  class="PRE2" >
+ : .frac ( fraction_of_one -- )
+ 	10000 one */ . ;
+</pre>
+<pre  class="PRE2" >
+ \ init-lookup-rad \ for radians angle*one/(pi/2)
+ init-lookup-deg \ for degrees angle*one/90
+ init-kk
+</pre>
+<pre  class="PRE2" >
+ \ examples
+ cr
+ 45 cr dup . deg sin .frac
+ 105 cr dup . deg10ths sin .frac \ sin for 10.5
+ 30 cr dup . deg cos .frac
+ 554 cr dup . deg10ths cos .frac \ cos for 55.4
+ 30 cr dup . deg tan .frac
+ cr </pre>
+</ol>
+</ol>
+</div>
+<div class="License">
+<ol>
+<li  class="L1" >License <ol>
+<p  class="P2" >This program is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation; either version 2 of the License.
+</p>
+<p  class="P2" >
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+</p>
+<p  class="P2" >
+You should have received a copy of the GNU General Public License
+along with this program; if not, write to the Free Software
+Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA. </p>
+</ol>
+</ol>
+</div>
+<div class="Credits">
+<ol>
+<li  class="L1" >Credits <ol>
+<pre  class="PRE2" > Copyright &copy; 2006 Noel Henson					Updated: 2006-10-19
+ noel@noels-lab.com </ol>
+</ol>
+</div>
+</body></html>

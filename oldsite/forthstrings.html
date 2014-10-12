@@ -1,0 +1,185 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html><head><title>Simple String Manipulation Words for Forth</title></head>
+<!--  $Revision: 1.52 $ -->
+<!--  $Date: 2008/10/11 22:04:09 $ -->
+<!--  $Author: noel $ -->
+<link href="webpage.css" rel="stylesheet" type="text/css">
+<body>
+<div class="DocTitle">
+<h1>Simple String Manipulation Words for Forth</h1>
+</div>
+<div class="MainPage">
+<div class="Summary">
+<ol>
+<li  class="L1" >Summary <ol>
+<p  class="P2" >Here is an old Forth strings library I used many years ago, circa 1987.
+It was originally used with Forth-79 and Forth-83 kernels. The main
+inspiration came from the book "Library of Forth Routines and
+Utilities", ISBN 0-452-25841-3. The code below has been modified to work
+on GFORTH, a decidedly modern Forth, and other segmented-memory Forths. </p>
+</ol>
+</ol>
+</div>
+<div class="Code">
+<ol>
+<li  class="L1" >Code <ol>
+<pre  class="PRE2" > \ Super simple strings package for Forth (circa 1987, Forth79 and Forth83)
+ \ Modified for GFORTH 2009-12-10
+ \
+ \ String Format:
+ \	size	byte	alloted string size
+ \	count	byte	size of stored string
+ \	string	bytes	string data
+ \
+ \ When executed a string variable returns the address of the count field so
+ \ the standard of Forth's counted strings is maintained.
+</pre>
+<pre  class="PRE2" >
+ \ because gforth doesn't have it
+ : c+! ( n caddr - ) dup c@ rot + swap c! ;
+</pre>
+<pre  class="PRE2" >
+ \ create a string variable and allocate it's storage
+ \ string length initialized to 0
+ \ usage: 55 $variable ted$
+ : $variable ( u - ) ( - caddr )
+   create   $FF and   dup c, 0 c, allot does> 1+ ;
+</pre>
+<pre  class="PRE2" >
+ \ create a string constant
+ \ usage: $constant ted$ test string data"
+ : $constant ( - ) ( - caddr ) create <img src="char" alt="char"> " word c@ 1+ allot ;
+</pre>
+<pre  class="PRE2" >
+ \ fetch a string (well, just count it)
+ \ caddr1 is the address of a counted string
+ : $@ ( caddr1 - caddr2 count ) count ;
+</pre>
+<pre  class="PRE2" >
+ \ print a string
+ \ caddr is the address of a counted string
+ : $. ( caddr - ) count type ;
+</pre>
+<pre  class="PRE2" >
+ \ return the length of a string
+ \ caddr is the address of a counted string
+ : len$ ( caddr - n ) c@ ;
+</pre>
+<pre  class="PRE2" >
+ \ return the size of a strings allocated space
+ \ caddr is the address of a counted string variable (requires size)
+ : size$ ( caddr - n ) 1- c@ ;
+</pre>
+<pre  class="PRE2" >
+ \ return the unused space in a string variable
+ : unused$ ( caddr - u ) dup size$ swap len$ - ;
+</pre>
+<pre  class="PRE2" >
+ \ clear a string, just set the length to 0
+ : clr$ ( caddr - ) 0 swap c! ;
+</pre>
+<pre  class="PRE2" >
+ \ return copy count limited by the string size
+ \ count is the count of the desired characters to copy
+ : countlimit ( count caddr - u ) unused$ min ;
+</pre>
+<pre  class="PRE2" >
+ \ return the address of the end of a string
+ \ abcdef
+ \       ^ meaning this address (just past the f)
+ : end$ ( caddr1 - caddr2 ) dup len$ + 1+ ;
+</pre>
+<pre  class="PRE2" >
+ \ append an un-counted string (caddr1 count1) to a string variable (caddr2)
+ \ extra characters from caddr1 are lost
+ : #$+! ( caddr1 count1 caddr2 - )
+   dup >r   dup end$ -rot ( caddr1 caddr2e count1 caddr2 )
+   countlimit dup >r   move   r> r> c+! ;
+</pre>
+<pre  class="PRE2" >
+ \ append a counted string (caddr1) to a string variable (caddr2)
+ \ extra characters from caddr1 are lost
+ : $+! ( caddr1 caddr2 - ) swap count rot #$+! ;
+</pre>
+<pre  class="PRE2" >
+ \ store a un-counted string (caddr1 count1) into a string variable (caddr2)
+ \ extra characters in un-counted string are lost
+ : #$! ( caddr1 count1 caddr2 - ) dup clr$ #$+! ;
+</pre>
+<pre  class="PRE2" >
+ \ store a counted string (caddr1) into a string variable (caddr2)
+ \ extra characters from caddr1 are lost
+ : $! ( caddr1 caddr2 - ) swap count rot #$! ;
+</pre>
+<pre  class="PRE2" >
+ \ compare a string (caddr1 count1) to a string variable (caddr2)
+ : #$= ( caddr1 count1 caddr2 - n ) count compare ;
+</pre>
+<pre  class="PRE2" >
+ \ compare two string variables
+ : $= ( caddr1 caddr2 - n ) swap count rot #$= ;
+</pre>
+<pre  class="PRE2" >
+ \ Words borrowed from BASIC but make me feel comfortable
+</pre>
+<pre  class="PRE2" >
+ \ return n characters from left side of a string variable
+ \ count will not exceed the actual number of characters in the string
+ : left$ ( n caddr1 - caddr2 count ) count rot min ;
+</pre>
+<pre  class="PRE2" >
+ \ return n characters from right side of a string variable
+ \ count will not exceed the actual number of characters in the string
+ : right$ ( n caddr1 - caddr2 count ) count rot over   swap - 0 max   /string ;
+</pre>
+<pre  class="PRE2" >
+ \ return n2 characters from string variable starting from n1
+ \ count will not exceed the actual number of characters in the string
+ : mid$ ( n1 n2 caddr1 - caddr2 count ) -rot over +   rot left$   rot /string ; </pre>
+</ol>
+</ol>
+</div>
+<div class="Examples">
+<ol>
+<li  class="L1" >Examples <ol>
+<pre  class="PRE2" > 100 $variable ted$
+ s" 0123456789" ted$ #$!
+ ted$ $. <strong>0123456789 ok</strong>
+ 100 $variable ned$
+ s" abcdef" ned$ #$!
+ ned$ ted$ $+!
+ ted$ $. <strong>0123456789abcdef ok</strong>
+ 2 3 ted$ mid$ type <strong>234 ok</strong>
+ ted$ ned$ $!
+ ned$ $. <strong>0123456789abcdef ok</strong> </pre>
+</ol>
+</ol>
+</div>
+<div class="License">
+<ol>
+<li  class="L1" >License <ol>
+<p  class="P2" >This program is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation; either version 2 of the License.
+</p>
+<p  class="P2" >
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+</p>
+<p  class="P2" >
+You should have received a copy of the GNU General Public License
+along with this program; if not, write to the Free Software
+Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA. </p>
+</ol>
+</ol>
+</div>
+<div class="Credits">
+<ol>
+<li  class="L1" >Credits <ol>
+<pre  class="PRE2" > Copyright &copy; 2009 Noel Henson					Updated: 2009-12-10
+ noel@noels-lab.com </ol>
+</ol>
+</div>
+</body></html>

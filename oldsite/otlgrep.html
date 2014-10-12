@@ -1,0 +1,118 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html><head><title>otlgrep</title></head>
+<!--  $Revision: 1.52 $ -->
+<!--  $Date: 2008/10/11 22:04:09 $ -->
+<!--  $Author: noel $ -->
+<link href="webpage.css" rel="stylesheet" type="text/css">
+<body>
+<div class="DocTitle">
+<h1>otlgrep</h1>
+</div>
+<div class="MainPage">
+<div class="Summary">
+<ol>
+<li  class="L1" >Summary <ol>
+<p  class="P2" >This is an outline-aware grep utility. It returns an outline
+that contains only branches that satisfy the regular expression.
+This is useful for quickly extracting context-sensitive
+information from an outline. </p>
+</ol>
+</ol>
+</div>
+<div class="Usage">
+<ol>
+<li  class="L1" >Usage <ol>
+<pre  class="PRE2" > Usage:
+ otlgrep.py <img src="options" alt="options"> pattern <img src="file..." alt="file...">
+ Options
+ 	-i            Ignore case
+ 	--version     Print version (RCS) information.
+ 	--help        Show help.
+ <img src="file..." alt="file..."> is zero or more files to search. Wildcards are supported.
+ 		  if no file is specified, input is expected on stdin.
+ output is on STDOUT </pre>
+</ol>
+</ol>
+</div>
+<div class="Examples">
+<ol>
+<li  class="L1" >Examples <ol>
+<p  class="P2" >An otlgrep of the outline below yields a new outline that contains only
+those branches that match the grep.
+</p>
+<li  class="L2" >Before the otlgrep <ol>
+<li  class="L3" >Pets
+<li  class="L3" >Indoor <ol>
+<li  class="L4" >Cats <ol>
+<li  class="L5" >Sophia
+<li  class="L5" >Hillary </ol>
+<li  class="L4" >Rats <ol>
+<li  class="L5" >Finley
+<li  class="L5" >Oliver </ol>
+<li  class="L4" >Dogs <ol>
+<li  class="L5" >Kirby </ol>
+</ol>
+<li  class="L3" >Outdoor <ol>
+<li  class="L4" >Dogs <ol>
+<li  class="L5" >Kirby
+<li  class="L5" >Hoover </ol>
+<li  class="L4" >Goats <ol>
+<li  class="L5" >Primrose
+<li  class="L5" >Joey </ol>
+</ol>
+</ol>
+<li  class="L2" >After otlgrep Sophia pets.otl <ol>
+<li  class="L3" >Indoor <ol>
+<li  class="L4" >Cats <ol>
+<li  class="L5" >Sophia </ol>
+</ol>
+</ol>
+<li  class="L2" >After otlgrep Dogs pets.otl <ol>
+<li  class="L3" >Indoor <ol>
+<li  class="L4" >Dogs <ol>
+<li  class="L5" >Kirby </ol>
+</ol>
+<li  class="L3" >Outdoor <ol>
+<li  class="L4" >Dogs <ol>
+<li  class="L5" >Kirby
+<li  class="L5" >Hoover </ol>
+</ol>
+</ol>
+</ol>
+</ol>
+</div>
+<div class="Downloads">
+<ol>
+<li  class="L1" >Downloads <ol>
+<li  class="L2" ><a href="http://www.noels-lab.com/files/otlgrep.zip">Download ZIP</a>
+<li  class="L2" ><a href="http://www.noels-lab.com/files/otlgrep.tgz">Download tgz</a> </ol>
+</ol>
+</div>
+<div class="License">
+<ol>
+<li  class="L1" >License <ol>
+<p  class="P2" >This program is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation; either version 2 of the License.
+</p>
+<p  class="P2" >
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+</p>
+<p  class="P2" >
+You should have received a copy of the GNU General Public License
+along with this program; if not, write to the Free Software
+Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA. </p>
+</ol>
+</ol>
+</div>
+<div class="Credits">
+<ol>
+<li  class="L1" >Credits <ol>
+<pre  class="PRE2" > Copyright &copy; 2006 Noel Henson					Updated: 2006-02-19
+ noel@noels-lab.com </ol>
+</ol>
+</div>
+</body></html>

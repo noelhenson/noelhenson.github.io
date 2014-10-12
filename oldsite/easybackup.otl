@@ -1,0 +1,97 @@
+EasyBackup
+Summary
+	: Easy Backup is a simple shell script to backup data. The main advantage 
+	: over just using tar is that the archive is directly browseable. The 
+	: entire directory hierarchy remains intact. Only the files themselves are 
+	: compressed.
+Usage
+	; Usage: easybackup.sh &#91;burn&#93; command backupName
+Commands
+	; burn             burns backups to DVD with growisofs
+	; full             perform a full backup
+	; incr             perform an incremental backup
+	; init             initializes a DVD for incremental backups
+	; -v, --version    show the version
+	; -h, --help       show this message
+	; --help-config    show configuration help
+	; --help-commands  show command examples
+	; --help-settings  show the current easybackup settings
+Examples
+	; easybackup.sh full photos
+	;         This command would backup all the files in 
+	;         /home/noel/backups/photos.inc while excluding
+	;         all files in /home/noel/backups/photos.exc.
+	; easybackup.sh incr music
+	;         This command would backup all the new files in 
+	;         /home/noel/backups/music.inc while excluding
+	;         all files in /home/noel/backups/music.exc.
+	; easybackup.sh burn incr music
+	;         This command would do the same as above but would
+	;         also burn the contents, incrementally (growisofs -M),
+	;         onto a DVD.
+Configuration
+	: There are two types of configuration files. The first is optional.
+	: It sets where easybackup.sh is to find backup configuration files
+	: and where to store the backups. These files are /etc/easybackup.cfg
+	: and $HOME/.easybackuprc. /etc/easybackup.cfg is read first, if it
+	: exists. Then $HOME/.easybackuprc is read, if it exists. This allows 
+	: $HOME/.easybackuprc to override settings in /etc/easybacukp.cfg. If
+	: neither file is present, easybackup.sh currently defaults to:
+	;	backup configuration file location:  $HOME/backups
+	;	backup data storage location:        $HOME/backups/data
+	;	program to compress files:           gzip -9
+	;	program to save incrementals:        growisofs -M /dev/dvdrw
+	: Files of the second type determine what is to be included and what,
+	: if anything, is to be skipped. These files have the suffix of .inc
+	: for files to be included and .exc for files to be excluded. Wildcards
+	: and partial entries are supported.
+	; Example Configuration Files (for example, "myprojects")
+	; 	Coniguration file myprojects.inc might include:
+	; 		/home/noel/active
+	; 		/home/noel/billing
+	; 		/home/noel/clientDB
+	; 	Coniguration file myprojects.exc might include:
+	; 		*~
+	; 		*.hex
+	; 		*.cod
+	; 		*.lst
+	; 		*.BAK
+	; 		active/.*/sandbox
+	; 		vmware/data
+	;
+	; Example .easybackuprc
+	; 	# Where to find my backup configuration files
+	; 	BACKDIR=/home/noel/backups
+	; 	# Where to store the backups created
+	; 	DATADIR=/home/noel/backups/data
+	; 	# backup (owner) information file
+	; 	MYINFO="/home/noel/backups/data/info.txt"
+	; 	# What compressor to use
+	; 	ZIPPER="gzip -9"                        # my personal favorite
+	; 	# ZIPPER="bzip2 -9"                     # another good option
+	; 	# ZIPPER="zip -D -m {}.zip"             # for those M$ users
+	; 	# how to burn a 'growing' DVD of incremental backups
+	; 	INCRBURN="growisofs -M /dev/dvdrw -R -l"
+	; 	# how to initialize and incremental (not for CDRW)
+	; 	INITINCR="growisofs -Z /dev/dvdrw -R -l /home/noel/backups/data/info.txt"
+	; 	# how to store full backups
+	; 	FULLBURN="growisofs -Z /dev/dvdrw -R -l"
+	;   (the above also applies to /etc/easybackup.cfg)
+Download
+	[http://www.noels-lab.com/files/easybackup.sh.gz easybackup.sh.gz]
+License
+	: This program is free software; you can redistribute it and/or modify
+	: it under the terms of the GNU General Public License as published by
+	: the Free Software Foundation; either version 2 of the License.
+	:
+	: This program is distributed in the hope that it will be useful,
+	: but WITHOUT ANY WARRANTY; without even the implied warranty of
+	: MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+	: GNU General Public License for more details.
+	:
+	: You should have received a copy of the GNU General Public License
+	: along with this program; if not, write to the Free Software
+	: Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+Credits
+	; Copyright (c) 2007 Noel Henson					Updated: 2007-01-01
+	; noel@noels-lab.com

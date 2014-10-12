@@ -1,0 +1,165 @@
+CORDIC
+Summary
+	: A Forth demo of the CORDIC algorithm. It computes sines and cosines in 
+	: the range of +/-90 degrees and +/-pi/2. This demo uses 16-bit math. 
+	: Results have this output format:
+	;   --------------------
+	;   | S | I | Fraction |
+	;   --------------------
+	;     15  14  13...0
+Examples
+	; ok
+	; 45 deg sin .frac //7070// ok     (0.7070)
+	; 30 deg sin .frac //5000// ok     (0.5000)
+Forth Source
+	; 
+	; \ CORDIC Demo for Forth
+	; \ Supports 16-bit sines and cosines for +/-90 degrees
+	; \
+	; \ Number format
+	; \  bit 15: sign
+	; \  bit 14: integer
+	; \  bits 13-0: fraction
+	; 
+	; 
+	; decimal
+	; 
+	; create lookup 15 cells allot
+	; : l! ( val index -- )
+	; 	cell * lookup + ! ;
+	; 
+	; : l@ ( index -- val )
+	; 	cell * lookup + @ ;
+	; 
+	; : init-lookup-rad ( -- )
+	; 	$3244 0 l!	$1DAC 1 l!	$FAE 2 l!	$7F5 3 l!
+	; 	$3FF 4 l!	$200 5 l!	$100 6 l!	$80 7 l!
+	; 	$40 8 l!	$20 9 l!	$10 10 l!	$8 11 l!
+	; 	$4 12 l!	$2 13 l!	$1 14 l!
+	; 	;
+	; 
+	; : init-lookup-deg ( -- )
+	; 	$2000 0 l!	$12e4 1 l!	$9fb 2 l!	$511 3 l!
+	; 	$28b 4 l!	$146 5 l!	$a3 6 l!	$51 7 l!
+	; 	$29 8 l!	$14 9 l!	$a 10 l!	$5 11 l!
+	; 	$3 12 l!	$1 13 l!	$1 14 l!
+	; 	;
+	; 
+	; variable x
+	; variable y
+	; variable z
+	; variable jj
+	; variable kk
+	; variable dx
+	; variable dy
+	; variable dz
+	; 
+	; $4000 constant one
+	; 
+	; : ?? ( -- )
+	; 	cr ." x " x ?
+	; 	."   " ." y " y ?
+	; 	."   " ." z " z ?
+	; 	."   " ." dx " dx ?
+	; 	."   " ." dy " dy ?
+	; 	."   " ." dz " dz ?
+	; 	;
+	; 
+	; : reciprocal ( -- )
+	; 	0 kk !
+	; 	one jj !
+	; 	15 0 do
+	; 		kk @ 1 lshift kk !
+	; 		jj @ x @ < 0= if
+	; 			1 kk +!
+	; 			jj @ x @ - jj !
+	; 		then
+	; 		jj @ 1 lshift jj !
+	; 	loop
+	; 	jj @ x @ < 0= if 1 kk +! then
+	; 	;
+	; 
+	; : circle ( -- )
+	; 	15 0 do
+	; 		i l@ dz !
+	; 		x @ i rshift dx !
+	; 		x @ $8000 and if 
+	; 			dx @ $ffff 14 i - lshift or $ffff and dx ! 
+	; 		then
+	; 		y @ i rshift dy !
+	; 		y @ $8000 and if 
+	; 			dy @ $ffff 14 i - lshift or $ffff and dy ! 
+	; 		then
+	; 		z @ $8000 and 0= if 
+	; 			z @ dz @ - $ffff and z !
+	; 			x @ dy @ - $ffff and x !
+	; 			y @ dx @ + $ffff and y !
+	; 		else
+	; 			z @ dz @ + $ffff and z !
+	; 			x @ dy @ + $ffff and x !
+	; 			y @ dx @ - $ffff and y !
+	; 		then
+	; 	loop
+	; 	;
+	; 
+	; : init-kk ( -- )
+	; 	one x !
+	; 	0 y !
+	; 	0 z !
+	; 	circle
+	; 	reciprocal
+	; 	;
+	; 
+	; : sincos ( angle -- )
+	; 	z !
+	; 	kk @ x !
+	; 	0 y !
+	; 	circle
+	; 	;
+	; 
+	; : sin ( angle -- magnitude )
+	; 	sincos y @ ;
+	; 
+	; : cos ( angle -- magnitude )
+	; 	sincos x @ ;
+	; 
+	; : tan ( angle -- tangent )
+	;	sincos y @ one * x @ / ;
+	;
+	; : deg ( angle -- binangle )
+	; 	one 90 */ ;
+	; 
+	; : deg10ths ( angle -- binangle )
+	; 	one 900 */ ;
+	; 
+	; : .frac ( fraction_of_one -- )
+	; 	10000 one */ . ;
+	; 
+	; \ init-lookup-rad \ for radians angle*one/(pi/2)
+	; init-lookup-deg \ for degrees angle*one/90
+	; init-kk
+	; 
+	; \ examples
+	; cr
+	; 45 cr dup . deg sin .frac
+	; 105 cr dup . deg10ths sin .frac \ sin for 10.5
+	; 30 cr dup . deg cos .frac
+	; 554 cr dup . deg10ths cos .frac \ cos for 55.4
+	; 30 cr dup . deg tan .frac
+	; cr
+License
+	: This program is free software; you can redistribute it and/or modify
+	: it under the terms of the GNU General Public License as published by
+	: the Free Software Foundation; either version 2 of the License.
+	:
+	: This program is distributed in the hope that it will be useful,
+	: but WITHOUT ANY WARRANTY; without even the implied warranty of
+	: MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+	: GNU General Public License for more details.
+	:
+	: You should have received a copy of the GNU General Public License
+	: along with this program; if not, write to the Free Software
+	: Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+Credits
+	; Copyright (c) 2006 Noel Henson					Updated: 2006-10-19
+	; noel@noels-lab.com

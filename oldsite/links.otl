@@ -1,0 +1,50 @@
+Noel's Lab #Noel's Lab : Links#
+_Menu
+	[index.html Home]
+	[blog.html Blog]
+	[reviews.html Reviews]
+	[howtos.html HOWTOs]
+	[software.html Software]
+	//Links//
+	[contact.html Contact]
+Links
+	Embedded Design and Development
+		Lane Mountain Logic - [http://www.lmlogic.com www.lmlogic.com]
+			: A shameless plug for my day job. :) Embedded design and 
+			: programming services.
+	Motion Control
+		Infrared Remote Solutions - [http://www.infraredremote.com www.infraredremote.com]
+			: Remote controls, remote control receivers/decoders, remote 
+			: control relay boards and remote control ICs.
+	MCU Boards
+		New Micros - [http://www.newmicros.com www.newmicros.com]
+			: Excellent, low-cost Boards that speak Forth
+	MCU development tools
+		picp - [http://home.pacbell.net/theposts/picmicro home.pacbell.net/theposts/picmicro]
+			: Linux command-line and GUI interfaces to the 
+			: [http://www.microchip.com Microchip] PicStart Plus and other 
+			: PIC programmers.
+		gputils - [http://gputils.sourceforge.net gputils.sourceforge.net]
+			: A collection of tools for the 
+			: [http://www.microchip.com Microchip] PIC.
+	Test/Lab Equipment
+		BitScope - [http://www.bitscope.com www.bitscope.com]
+			: Affordable mixed-signal analyzers.
+	Thinking
+		Vim Outliner - [http://www.vimoutliner.org www.vimoutliner.org]
+			: A plugin for Vim that turn it into a complete outliner on 
+			: the order of GrandView, More and MaxThink. (This site is 
+			: written with Vim Outliner.)
+		TroubleShooters.Com&reg; - [http://www.troubleshooters.com www.troubleshooters.com]
+			: Loads of information about troubleshooting, planning and 
+			: organizing. Techs and engineers should check out the 
+			: Universal Troubleshooting Process.
+		43 Folders - [http://www.43folders.com www.43folders.com]
+			: Great site about organization and productivity.
+	Linux
+		Distro Watch - [http://www.distrowatch.com www.distrowatch.com]
+		Slackware - [http://www.slackware.com www.slackware.com]
+_BottomMenu
+	[index.html Home] :: [blog.html Blog] :: [reviews.html Reviews] :: [howtos.html HOWTOs] :: [software.html Software] :: [links.html Links] :: [contact.html Contact]
+_Copyright
+	; Copyright (c) 2005 Noel Henson					Updated: 2005-10-22

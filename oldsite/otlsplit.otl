@@ -1,0 +1,119 @@
+otlsplit
+Summary
+	: Splits an outline into separate outlines according to the 
+	: defined split level. Good for creating simple web sites from 
+	: a single outline file. Also good for splitting large outines 
+	: into smaller outlines like separating an outline of a book into 
+	: a bunch of chapter outlines. (see [otltail.html otltail])
+	:
+	: You can do some pretty amazing things with this simple tool. When 
+	: coupled with [otl2html.html otl2thml], you can create even create whole 
+	: websites. In fact, [http://www.noels-lab.com/ www.noels-lab.com] was 
+	: created from a single OTL file.
+Usage
+	; otlsplit.py [options] inputfile
+	; Options
+	;      -l level  The number of levels to split down to. The default is 1
+	;      -D dir    Specifiy a target directory for the output files
+	;      -t        Include a title line (the parerent heading) in split files
+	;      -v        Print version (RCS) information.
+	;      -h        Show help.
+	; output is on STDOUT
+Example
+	: Here is a simple example using a book. If you start with the following 
+	: outline and run 'otlsplit -l 1 bool.otl', you'll end up with a file for 
+	: each level-1 heading. In this case, table of contents, preface, index 
+	: and chapters.
+	Before splitting
+		Book.otl (file contains)
+			Book Title
+			Preface
+				: blah blah blah blah blah blah blah blah blah blah blah blah 
+				: blah blah blah blah blah blah blah blah blah blah blah blah 
+				: blah blah blah blah blah blah blah blah blah blah blah blah 
+				: blah blah blah blah blah blah
+			Chapter 1
+				: blah blah blah blah blah blah blah blah blah blah blah blah 
+				: blah blah blah blah blah blah blah blah blah blah blah blah 
+				: blah blah blah blah blah blah blah blah blah blah blah blah 
+				: blah blah blah blah blah blah
+				Section A
+					: blah blah blah blah blah blah blah blah blah blah blah blah 
+					: blah blah blah blah blah blah blah blah blah blah blah blah 
+					: blah blah blah blah blah blah blah blah blah blah blah blah 
+					: blah blah blah blah blah blah
+				Section B
+					: blah blah blah blah blah blah blah blah blah blah blah blah 
+					: blah blah blah blah blah blah blah blah blah blah blah blah 
+					: blah blah blah blah blah blah blah blah blah blah blah blah 
+					: blah blah blah blah blah blah
+			Chapter 2
+				: blah blah blah blah blah blah blah blah blah blah blah blah 
+				: blah blah blah blah blah blah blah blah blah blah blah blah 
+				: blah blah blah blah blah blah blah blah blah blah blah blah 
+				: blah blah blah blah blah blah
+			Chapter 3
+				: blah blah blah blah blah blah blah blah blah blah blah blah 
+				: blah blah blah blah blah blah blah blah blah blah blah blah 
+				: blah blah blah blah blah blah blah blah blah blah blah blah 
+				: blah blah blah blah blah blah
+			Index
+				: blah blah blah blah blah blah blah blah blah blah blah blah 
+				: blah blah blah blah blah blah blah blah blah blah blah blah 
+				: blah blah blah blah blah blah blah blah blah blah blah blah 
+				: blah blah blah blah blah blah
+	After splitting
+		Preface.otl (file contains)
+			: blah blah blah blah blah blah blah blah blah blah blah blah 
+			: blah blah blah blah blah blah blah blah blah blah blah blah 
+			: blah blah blah blah blah blah blah blah blah blah blah blah 
+			: blah blah blah blah blah blah
+		Chapter_1.otl (file contains)
+			: blah blah blah blah blah blah blah blah blah blah blah blah 
+			: blah blah blah blah blah blah blah blah blah blah blah blah 
+			: blah blah blah blah blah blah blah blah blah blah blah blah 
+			: blah blah blah blah blah blah
+			Section A
+				: blah blah blah blah blah blah blah blah blah blah blah blah 
+				: blah blah blah blah blah blah blah blah blah blah blah blah 
+				: blah blah blah blah blah blah blah blah blah blah blah blah 
+				: blah blah blah blah blah blah
+			Section B
+				: blah blah blah blah blah blah blah blah blah blah blah blah 
+				: blah blah blah blah blah blah blah blah blah blah blah blah 
+				: blah blah blah blah blah blah blah blah blah blah blah blah 
+				: blah blah blah blah blah blah
+		Chapter_2.otl (file contains)
+			: blah blah blah blah blah blah blah blah blah blah blah blah 
+			: blah blah blah blah blah blah blah blah blah blah blah blah 
+			: blah blah blah blah blah blah blah blah blah blah blah blah 
+			: blah blah blah blah blah blah
+		Chapter_3.otl (file contains)
+			: blah blah blah blah blah blah blah blah blah blah blah blah 
+			: blah blah blah blah blah blah blah blah blah blah blah blah 
+			: blah blah blah blah blah blah blah blah blah blah blah blah 
+			: blah blah blah blah blah blah
+		Index.otl (file contains)
+			: blah blah blah blah blah blah blah blah blah blah blah blah 
+			: blah blah blah blah blah blah blah blah blah blah blah blah 
+			: blah blah blah blah blah blah blah blah blah blah blah blah 
+			: blah blah blah blah blah blah
+Download
+	[http://www.noels-lab.com/files/otlsplit.zip Download a ZIP]
+	[http://www.noels-lab.com/files/otlsplit.tgz Download a tgz]
+License
+	: This program is free software; you can redistribute it and/or modify
+	: it under the terms of the GNU General Public License as published by
+	: the Free Software Foundation; either version 2 of the License.
+	:
+	: This program is distributed in the hope that it will be useful,
+	: but WITHOUT ANY WARRANTY; without even the implied warranty of
+	: MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+	: GNU General Public License for more details.
+	:
+	: You should have received a copy of the GNU General Public License
+	: along with this program; if not, write to the Free Software
+	: Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+Credits
+	; Copyright (c) 2006 Noel Henson					Updated: 2006-02-19
+	; noel@noels-lab.com
